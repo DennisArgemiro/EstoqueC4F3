@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../styles/storage.css" />
+    <title>EstoqueC4F3</title>
+  </head>
+  <body>
+    <header>
+      <section class="container">
+        <div class="logo">
+          <img
+            src="../assets/estoquec4.png"
+            alt=""
+            class="logo-img"
+            width="200px"
+          />
+        </div>
+        <div class="button">
+          <button class="btnHeader">Vendas</button>
+          <button class="btnHeader">Estoque</button>
+          <button class="btnHeader">Caixa</button>
+        </div>
+      </section>
+    </header>
+    <main>
+      <section class="filter">
+        <div class="containerFilter">
+          <div class="inputSearch">
+            <h3>Pesquisar</h3>
+            <input type="text" name="nameFilter" id="nameFilter" />
+          </div>
+          <div class="inputRadio">
+            <div>
+              <h3>Filtrar por:</h3>
+            </div>
+            <div class="radioSelect">
+              <label for="filter"></label>
+              <div class="divRadio">
+                <input type="radio" name="filter" id="tipo" />
+                <h6>Tipo</h6>
+              </div>
+              <div class="divRadio">
+                <input type="radio" name="filter" id="preco" />
+                <h6>Preço</h6>
+              </div>
+              <div class="divRadio">
+                <input type="radio" name="filter" id="validade" />
+                <h6>Validade</h6>
+              </div>
+              <div class="divRadio">
+                <input type="radio" name="filter" id="lote" />
+                <h6>Lote</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="table"></section>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
