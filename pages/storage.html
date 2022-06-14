@@ -12,6 +12,7 @@
     />
     <link rel="stylesheet" href="../styles/storage.css" />
     <title>EstoqueC4F3</title>
+    <script type="module" src="../scripts/database.js"></script>
   </head>
   <body>
     <header>
@@ -45,7 +46,7 @@
             <div class="radioSelect">
               <label for="filter"></label>
               <div class="divRadio">
-                <input type="radio" name="filter" id="nome" />
+                <input type="radio" name="filter" id="nome" checked />
                 <h6>Nome</h6>
               </div>
               <div class="divRadio">
@@ -68,7 +69,31 @@
           </div>
         </div>
       </section>
-      <section class="table"></section>
+      <section class="table-section">
+        <table id="table">
+          <tr class="tableHeader">
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Preco</th>
+            <th>Validade</th>
+            <th>Lote</th>
+            <th>Quantidade</th>
+          </tr>
+          <tr class="tableRow">
+            <td>Nescau</td>
+            <td>Achocolatado</td>
+            <td>19,75</td>
+            <td>09/23</td>
+            <td>0001</td>
+          </tr>
+          <tr class="tableRow">
+            <td>nome</td>
+          </tr>
+          <tr class="tableRow">
+            <td>nome</td>
+          </tr>
+        </table>
+      </section>
     </main>
 
     <script
