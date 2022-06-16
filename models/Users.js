@@ -1,34 +1,34 @@
 const Sequelize = require('sequelize');
 const connection = require('../database/database');
 
-const Products = connection.define('products', {
+const Users = connection.define('users', {
 
+    username: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: ''
+    },
     name: {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: ''
     },
-    type: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        defaultValue: ''
-    },
-    price: {
+    email: {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: '0'
     },
-    expirationIn: {
+    password: {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: '00/00/0000'
     },
-    lote: {
-        type: Sequelize.INTEGER,
+    isAdministrator: {
+        type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: 1
+        defaultValue: 0
     },
-    qtd: {
+    type: {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0
@@ -36,5 +36,6 @@ const Products = connection.define('products', {
 
 });
 
-module.exports = Products;
+
+module.exports = Users;
 
