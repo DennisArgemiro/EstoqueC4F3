@@ -9,6 +9,7 @@ const homeController = require("./controllers/system/home");
 const productsController = require("./controllers/system/products");
 const loginController = require("./controllers/authentication/login");
 const registerController = require("./controllers/authentication/register");
+const filterController = require("./controllers/system/filter")
 
 const app = Express();
 
@@ -29,12 +30,13 @@ app.use("/", homeController);
 app.use("/", productsController);
 app.use("/", loginController);
 app.use("/", registerController);
+app.use("/", filterController)
 
 connection.authenticate().then(() => {
   
   console.log('Conectei com Banco de Dados!');
 
-  app.listen(3000, (error) => {
+  app.listen(8080, (error) => {
 
     if (!error) {
 
