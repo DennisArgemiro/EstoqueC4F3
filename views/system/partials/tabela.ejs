@@ -1,0 +1,24 @@
+<table id="table" class="table">
+    <tr class="tableHeader">
+      <th>Nome</th>
+      <th>Tipo</th>
+      <th>Preco</th>
+      <th>Validade</th>
+      <th>Lote</th>
+      <th>Quantidade</th>
+    </tr>
+    
+    <% products.forEach((product) => { %>
+
+      <tr class="tableRow">
+        <td><%= product.name %></td>
+        <td><%= product.type %></td>
+        <td><%= product.price %></td>
+        <td><%= product.expirationIn %></td>
+        <td><%= product.lote %></td>
+        <td><%= product.qtd %></td>
+      </tr>
+
+    <% }); %>
+
+  </table>

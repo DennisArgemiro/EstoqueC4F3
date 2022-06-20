@@ -1,114 +1,40 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-      crossorigin="anonymous"
-    />
-    <script src="https://kit.fontawesome.com/2716485b7f.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/storage.css" />
-    <title>EstoqueC4F3</title>
-    <!-- <script type="module" src="../scripts/database.js"></script> -->
-  </head>
-  <body>
-    <header>
-      <section class="containerr">
-        <div class="logo">
-          <img
-            src="./images/estoquec4.png"
-            alt=""
-            class="logo-img"
-            width="200px"
-          />
-        </div>
-        <div class="button">
-          <h5>Bem vindo, <b><%= session.name %></b></h5>
-          <button class="btnHeader">Vendas</button>
-          <button class="btnHeader">Estoque</button>
-          <button class="btnHeader">Caixa</button>
-          <a href="/novo-produto" class="btnHeader">Novo Produto</a>
-        </div>
-      </section>
-    </header>
-    <main>
-      <section class="filter">
-        <form method="POST" action="/filter">
-        <div class="containerFilter">
-            <div class="inputSearch">
-              <h3>Pesquisar</h3>
-            <input type="text" name="filter" id="nameFilter" />
+<%- include('./partials/header'); %>
+
+  <div class="card mt-4">
+
+    <div class="card-header">
+      <h1 class="card-title"><i class="fa-solid fa-magnifying-glass mr-2"></i>Pesquisar produtos</h1>
+    </div>
+
+    <div class="card-body p-0">
+
+      <form class="m-0" id="filter">
+
+        <div class="input-group ">
+          <input type="text" class="form-control" id="text" placeholder="Recipient's username" aria-label="Digite o conteúdo da pesquisa." aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
           </div>
-          <div class="inputRadio">
-            <div>
-              <h3>Filtrar por:</h3>
-            </div>
-            <div class="radioSelect">
-              <label for="filter"></label>
-              <div class="divRadio">
-                <input type="radio" name="filter" id="nome" value=1 checked />
-                <h6>Nome</h6>
-              </div>
-              <div class="divRadio">
-                <input type="radio" name="filter" id="tipo" value=2/>
-                <h6>Tipo</h6>
-              </div>
-              <div class="divRadio">
-                <input type="radio" name="filter" id="preco" value="price"/>
-                <h6>Preço</h6>
-              </div>
-              <div class="divRadio">
-                <input type="radio" name="filter" id="validade" value="expirationIn"/>
-                <h6>Validade</h6>
-              </div>
-              <div class="divRadio">
-                <input type="radio" name="filter" id="lote" value="lote"/>
-                <h6>Lote</h6>
-              </div>
-            </div>
-          </div>
-          <div class="submitButton" style="max-width: 80px; width: 100%;">
-            <button class="btn btn-primary" type="submit">Pesquisar</button>
-          </div>
-        </form>
         </div>
-      </section>
-      <section class="table-section">
-        <table id="table">
-          <tr class="tableHeader">
-            <th>Nome</th>
-            <th>Tipo</th>
-            <th>Preco</th>
-            <th>Validade</th>
-            <th>Lote</th>
-            <th>Quantidade</th>
-          </tr>
-          
-          <% products.forEach((product) => { %>
 
-            <tr class="tableRow">
-              <td><%= product.name %></td>
-              <td><%= product.type %></td>
-              <td><%= product.price %></td>
-              <td><%= product.expirationIn %></td>
-              <td><%= product.lote %></td>
-              <td><%= product.qtd %></td>
-            </tr>
+        <label class="mt-4 ml-3">Tipo</label>
+        <select class="form-control" id="type">
+          <option value="name">nome</option>
+          <option value="type">tipo</option>
+          <option value="price">preço</option>
+          <option value="validity">validade</option>
+          <option value="lote">lote</option>
+          <option value="qtd">quantidade</option>
+        </select>
 
-          <% }); %>
+      </form>
 
-        </table>
-      </section>
-    </main>
+    </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+
+    <script src="./js/filter.js"></script>
+    <div class="card-footer p-0" id="result"></div>
+
+  </div>
+
+<%- include('./partials/footer'); %>
