@@ -9,7 +9,8 @@ const homeController = require("./controllers/system/home");
 const productsController = require("./controllers/system/products");
 const loginController = require("./controllers/authentication/login");
 const registerController = require("./controllers/authentication/register");
-const filterController = require("./controllers/system/filter")
+const filterController = require("./controllers/system/filter");
+const checkoutController = require("./controllers/system/checkout");
 
 const app = Express();
 
@@ -30,7 +31,8 @@ app.use("/", homeController);
 app.use("/", productsController);
 app.use("/", loginController);
 app.use("/", registerController);
-app.use("/", filterController)
+app.use("/", filterController);
+app.use("/", checkoutController)
 
 connection.authenticate().then(() => {
   

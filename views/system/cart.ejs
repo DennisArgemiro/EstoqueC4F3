@@ -1,0 +1,191 @@
+<%- include('./partials/header'); %>
+
+<div class="card col-12 mt-4">
+  
+  <div class="card-header">
+    <h1 class="card-title col-12"><i class="fa-solid fa-cart-shopping mr-2"></i> Carrinho de compra <span class="text-right float-right my-0">produtos: <b><%= cartItems.count %></b></span></h1>
+  </div>
+
+  <div class="card-body col-12 p-0">
+
+    <div class="row">
+
+      <div class="col-6 m-0 p-0" style="border-right: 1px solid black;">
+      
+        <form class="m-0" id="filterTwo">
+
+          <div class="input-group ">
+            <input type="text" class="form-control" id="text" placeholder="Digite o contedo da pesquisa." aria-label="Digite o conteúdo da pesquisa." aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+          </div>
+  
+          <label class="mt-4 ml-3">Tipo</label>
+          <select class="form-control mb-0" id="type">
+            <option value="name">nome</option>
+            <option value="type">tipo</option>
+            <option value="price">preço</option>
+            <option value="validity">validade</option>
+            <option value="lote">lote</option>
+            <option value="qtd">quantidade</option>
+          </select>
+  
+        </form>
+
+        <div id="result"></div>
+      
+      </div>
+
+
+
+      <div class="col-6 p-0 m-0 float-right">
+
+        <table class="table">
+          <% let counter = 1 %>
+
+          <tr class="tableHeader">
+            <th>#</th>
+            <th>nome</th>
+            <th>qtd</th>
+            <th>unitário</th>
+            <th>total</th>
+          </tr>
+          
+          
+          
+          
+          <% cartItems.rows.forEach((productId) => { %>
+
+            <tr class="tableRow">
+              
+              <td><%= counter %></td>
+              <td>
+
+                <% products.forEach((product) => { %>
+
+                  <% if (product.id == productId.product) { %>
+
+                    <%= product.name %>
+
+                  <% } %>
+
+                <% }) %>
+
+              </td>
+              <td><%= productId.qtd%></td>
+              <td>
+
+                <% products.forEach((product) => { %>
+
+                  <% if (product.id == productId.product) { %>
+
+                    R$<%= product.price %>
+
+                  <% } %>
+
+                <% }) %>
+
+              </td>
+              <td>
+
+                <% products.forEach((product) => { %>
+
+                  <% if (product.id == productId.product) { %>
+
+                    R$<%= product.price * productId.qtd %>
+
+                  <% } %>
+
+                <% }) %>
+
+              </td>
+            
+            </tr>
+
+            <% counter++ %>
+
+          <% }); %>
+
+         
+      
+        
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="card-footer">
+    
+    <button type="submit" class="btn btn-primary col-12" data-toggle="modal" data-target="#request">Checkout</button>
+
+  </div>
+
+</div>
+
+
+<!-- Modal update -->
+<div class="modal fade" id="request" data-backdrop="static" data-keyboard="false" tabindex="-1"
+aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header py-1">
+      <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-plus mr-2"></i>Finalizar Compra
+      </h5>
+    </div>
+
+    <% let totalTwo = 0; %>
+
+    <% cartItems.rows.forEach((productId) => { %>
+
+      <% products.forEach((productData) => { %>
+
+        <% if (productData.id == productId.product) { %>
+
+          <% totalTwo += Number( Number(productData.price) * productId.qtd ) %>
+
+        <% } %>
+
+      <% }); %>
+
+    <% }); %>
+
+    <div class="modal-body">
+
+      <h3>total: <b>
+
+        R$<%= totalTwo %>
+
+      </b></h3>
+      <hr>
+
+      <form class="form">
+
+        <label>CPF</label>
+        <input type="text" class="form-control">
+
+        <label>Forma de Pagamento</label>
+        <select class="form-control">
+
+          <option value="">Débito/Crédito</option>
+          <option value="">Dinheiro</option>
+          <option value="">Pix</option>
+
+        </select>
+
+        <button type="submit" class="btn btn-primary col-12 mt-3">Finalizar</button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="./js/filterTwo.js"></script>
+
+<%- include('./partials/footer'); %>
