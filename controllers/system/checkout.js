@@ -95,4 +95,15 @@ router.post("/cart/:id", isAuthenticated, (req, res) => {
 
 });
 
+router.post('/remove/:id', isAuthenticated, (req, res) => {
+  Cart.destroy({ where: { id: req.params.id } }).then(() => {
+
+    res.redirect('/cart');
+
+  }).catch((error) => {
+    console.log(error);
+    res.redirect('/cart');
+  });
+});
+
 module.exports = router;

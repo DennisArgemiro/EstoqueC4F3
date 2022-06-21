@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table table-striped">
   <tr class="tableHeader">
     <th>Nome</th>
     <th>Preco</th>
@@ -10,7 +10,7 @@
 
   <tr>
     <td><%= product.name %></td>
-    <td><%= product.price %></td>
+    <td>R$<%= product.price %></td>
     <td><%= product.qtd %></td>
     <td>
       <form method="POST" action="/cart/<%= product.id %>">

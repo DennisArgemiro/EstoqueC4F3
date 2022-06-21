@@ -1,0 +1,42 @@
+<%- include('./partials/header'); %>
+
+<div class="card mt-4">
+
+  <div class="card-header">
+    <h1 class="card-title"><i class="fa-solid fa-gear mr-2"></i> Configurações</h1>
+  </div>
+
+  <div class="card-body">
+
+    <form class="form" method="POST" action="/dashboard/configuration/save">
+
+      <label>Nome</label>
+      <input type="text" name="name" class="form-control mb-3" value="<%= configuration.name %>">
+
+      <label>Dono</label>
+      <input type="text" name="owner" class="form-control mb-3" value="<%= configuration.owner %>">
+      
+      <label>CNPJ</label>
+      <input type="text" name="cnpj" class="form-control mb-3" value="<%= configuration.cnpj %>">
+      
+      <label>Logo(URL)</label>
+      <input type="text" name="logo" class="form-control mb-3" value="<%= configuration.logo %>">
+      
+      <label>Endereço</label>
+      <input type="text" name="adress" class="form-control mb-3" value="<%= configuration.adress %>">
+      
+      <label>Cel 1</label>
+      <input type="text" name="cel" class="form-control mb-3" value="<%= configuration.cel %>">
+      
+      <label>Cel 2</label>
+      <input type="text" name="celTwo" class="form-control mb-3" value="<%= configuration.celTwo %>">
+
+      <button type="submit" class="btn btn-primary col-12">Salvar</button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<%- include('./partials/footer'); %>

@@ -12,6 +12,9 @@ const registerController = require("./controllers/authentication/register");
 const filterController = require("./controllers/system/filter");
 const checkoutController = require("./controllers/system/checkout");
 
+
+const configurationController = require("./controllers/dashboard/configuration");
+
 const app = Express();
 
 app.use(session({
@@ -32,7 +35,8 @@ app.use("/", productsController);
 app.use("/", loginController);
 app.use("/", registerController);
 app.use("/", filterController);
-app.use("/", checkoutController)
+app.use("/", checkoutController);
+app.use("/", configurationController);
 
 connection.authenticate().then(() => {
   

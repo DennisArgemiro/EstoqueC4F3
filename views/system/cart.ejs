@@ -10,19 +10,19 @@
 
     <div class="row">
 
-      <div class="col-6 m-0 p-0" style="border-right: 1px solid black;">
-      
+      <div class="col-12 m-0 p-0" style="border-bottom: 10px solid black;">
+
         <form class="m-0" id="filterTwo">
 
           <div class="input-group ">
-            <input type="text" class="form-control" id="text" placeholder="Digite o contedo da pesquisa." aria-label="Digite o conteúdo da pesquisa." aria-describedby="basic-addon2">
+            <input style="border-radius: 0;" type="text" class="form-control" id="text" placeholder="Digite o contedo da pesquisa." aria-label="Digite o conteúdo da pesquisa." aria-describedby="basic-addon2">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+              <button style="border-radius: 0;" class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
           </div>
   
           <label class="mt-4 ml-3">Tipo</label>
-          <select class="form-control mb-0" id="type">
+          <select class="form-control mb-0" id="type" style="border-radius: 0;">
             <option value="name">nome</option>
             <option value="type">tipo</option>
             <option value="price">preço</option>
@@ -32,6 +32,11 @@
           </select>
   
         </form>
+
+      </div>
+
+      <div class="col-6 m-0 p-0" style="border-right: 1px solid black;">
+      
 
         <div id="result"></div>
       
@@ -50,6 +55,7 @@
             <th>qtd</th>
             <th>unitário</th>
             <th>total</th>
+            <th>Remover</th>
           </tr>
           
           
@@ -98,6 +104,12 @@
                   <% } %>
 
                 <% }) %>
+
+              </td>
+
+              <td>
+
+                <center><form method="POST" action="/remove/<%= productId.id %>"><button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button></form></center>
 
               </td>
             

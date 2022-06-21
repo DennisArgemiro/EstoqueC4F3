@@ -21,7 +21,7 @@ router.post('/login', (req, res) => {
 
       if (isValid) {
 
-        req.session.user = { id: userData.id, name: userData.name }
+        req.session.user = { id: userData.id, name: userData.name, isAdministrator: userData.isAdministrator }
         res.redirect('/');
 
       } else {
