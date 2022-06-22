@@ -181,7 +181,6 @@ router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
         Products.findAll({ order: [["name", "ASC"]], limit: 5 })
           .then((productsTwo) => {
             res.render("./system/partials/tabelaCarrinho", { productsTwo });
-            console.log(productsTwo);
           })
           .catch((error) => {
             console.log(error);
@@ -193,7 +192,6 @@ router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
         Products.findAll({ order: [["type", "ASC"]], limit: 5 })
           .then((productsTwo) => {
             res.render("./system/partials/tabelaCarrinho", { productsTwo });
-            console.log(productsTwo);
           })
           .catch((error) => {
             console.log(error);
@@ -205,7 +203,6 @@ router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
         Products.findAll({ order: [["price", "ASC"]], limit: 5 })
           .then((productsTwo) => {
             res.render("./system/partials/tabelaCarrinho", { productsTwo });
-            console.log(productsTwo);
           })
           .catch((error) => {
             console.log(error);
@@ -217,7 +214,7 @@ router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
         Products.findAll({ order: [["expirationIn", "ASC"]], limit: 5 })
           .then((productsTwo) => {
             res.render("./system/partials/tabelaCarrinho", { productsTwo });
-            console.log(productsTwo);
+             
           })
           .catch((error) => {
             console.log(error);
@@ -229,7 +226,7 @@ router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
         Products.findAll({ order: [["lote", "ASC"]], limit: 5 })
           .then((productsTwo) => {
             res.render("./system/partials/tabelaCarrinho", { productsTwo });
-            console.log(productsTwo);
+             
           })
           .catch((error) => {
             console.log(error);
@@ -241,7 +238,7 @@ router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
         Products.findAll({ order: [["qtd", "ASC"]], limit: 5 })
           .then((productsTwo) => {
             res.render("./system/partials/tabelaCarrinho", { productsTwo });
-            console.log(productsTwo);
+             
           })
           .catch((error) => {
             console.log(error);
@@ -253,7 +250,7 @@ router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
         Products.findAll({ order: [["name", "ASC"]], limit: 5 })
           .then((productsTwo) => {
             res.render("./system/partials/tabelaCarrinho", { productsTwo });
-            console.log(productsTwo);
+             
           })
           .catch((error) => {
             console.log(error);
@@ -267,7 +264,7 @@ router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
         Products.findAll({ where: { name: text }, order: [["name", "ASC"]], limit: 5 })
           .then((productsTwo) => {
             res.render("./system/partials/tabelaCarrinho", { productsTwo });
-            console.log(productsTwo);
+             
           })
           .catch((error) => {
             console.log(error);
@@ -279,7 +276,7 @@ router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
         Products.findAll({ where: { type: text }, order: [["type", "ASC"]], limit: 5 })
           .then((productsTwo) => {
             res.render("./system/partials/tabelaCarrinho", { productsTwo });
-            console.log(productsTwo);
+             
           })
           .catch((error) => {
             console.log(error);
@@ -291,7 +288,7 @@ router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
         Products.findAll({ where: { price: text }, order: [["price", "ASC"]], limit: 5 })
           .then((productsTwo) => {
             res.render("./system/partials/tabelaCarrinho", { productsTwo });
-            console.log(productsTwo);
+             
           })
           .catch((error) => {
             console.log(error);
@@ -306,7 +303,7 @@ router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
         })
           .then((productsTwo) => {
             res.render("./system/partials/tabelaCarrinho", { productsTwo });
-            console.log(productsTwo);
+             
           })
           .catch((error) => {
             console.log(error);
@@ -318,7 +315,7 @@ router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
         Products.findAll({ where: { lote: text }, order: [["lote", "ASC"]], limit: 5 })
           .then((productsTwo) => {
             res.render("./system/partials/tabelaCarrinho", { productsTwo });
-            console.log(productsTwo);
+             
           })
           .catch((error) => {
             console.log(error);
@@ -330,7 +327,7 @@ router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
         Products.findAll({ where: { qtd: text }, order: [["qtd", "ASC"]], limit: 5 })
           .then((productsTwo) => {
             res.render("./system/partials/tabelaCarrinho", { productsTwo });
-            console.log(productsTwo);
+             
           })
           .catch((error) => {
             console.log(error);
@@ -342,7 +339,7 @@ router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
         Products.findAll({ order: [["name", "ASC"]], limit: 5 })
           .then((productsTwo) => {
             res.render("./system/partials/tabelaCarrinho", { productsTwo });
-            console.log(productsTwo);
+             
           })
           .catch((error) => {
             console.log(error);

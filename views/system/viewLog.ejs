@@ -1,0 +1,66 @@
+<%- include('./partials/header'); %>
+  
+  <div class="card mt-4">
+
+    <div class="card-header">
+      <h1 class="card-title"><i class="fa-solid fa-basket-shopping mr-2"></i> Histórico da compra <b><%= log.id %></b></h1>
+    </div>
+
+    <div class="card-body">
+
+      <div>
+        <span><b>Data da compra:</b> <%= log.createdAt.toLocaleDateString('pt-BR', { year: 'numeric' , month: 'numeric' , day: 'numeric' , hour: 'numeric' , minute: 'numeric' }).replace(' ', ' às '); %></span>
+        <span style="text-align: right; float: right;"><b>Total da compra:</b> R$ <%= log.total.toLocaleString('pt-br',{ style: 'currency', currency: 'BRL' }); %></span>
+      </div>
+
+      <div>
+        <span><b>Método de pagamento:</b> <%= log.payment %></span>
+        <span style="text-align: right; float: right;"><b>Complemento do pagamento:</b> <%= log.complement %></span>
+      </div>
+
+      <div>
+        <span><b>CPF:</b> <%= log.cpf %></span>
+      </div>
+
+    </div>
+
+    <div class="card-footer">
+
+      <table id="table" class="table table-striped">
+        <tr class="tableHeader">
+          <th>#</th>
+          <th>Produto</th>
+          <th>Valor unitário</th>
+          <th>Qtd</th>
+          <th>Total</th>
+        </tr>
+        <% let counter = 1; %>
+        <% log.products.list.forEach((product) => { %>
+    
+          <tr class="tableRow">
+            <td><%= counter %></td>
+            <% products.forEach((prod) => { %>
+
+              <% if (prod.id == product.productId) { %>
+
+                <td><%= prod.name %></td>
+                <td>R$<%= prod.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}).replace('.', ','); %></td>
+                <td><%= product.qtd %></td>
+                <td><%= (Number(prod.price) * Number(product.qtd)).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});  %></td>
+
+              <% } %>
+
+            <% }); %>
+            
+          </tr>
+          <% counter++ %>
+        <% }); %>
+    
+      </table>
+
+    </div>
+
+  </div>
+
+
+<%- include('./partials/footer'); %>

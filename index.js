@@ -3,15 +3,13 @@ const session = require('express-session');
 
 const connection = require('./database/database');
 
-// const Users = require('./models/Users');
-
 const homeController = require("./controllers/system/home");
 const productsController = require("./controllers/system/products");
 const loginController = require("./controllers/authentication/login");
 const registerController = require("./controllers/authentication/register");
 const filterController = require("./controllers/system/filter");
 const checkoutController = require("./controllers/system/checkout");
-
+const logsController = require("./controllers/system/logs");
 
 const configurationController = require("./controllers/dashboard/configuration");
 
@@ -37,6 +35,7 @@ app.use("/", registerController);
 app.use("/", filterController);
 app.use("/", checkoutController);
 app.use("/", configurationController);
+app.use("/", logsController);
 
 connection.authenticate().then(() => {
   

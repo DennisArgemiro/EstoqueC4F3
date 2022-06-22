@@ -1,0 +1,37 @@
+<%- include('./partials/header'); %>
+
+  <div class="card mt-4">
+
+    <div class="card-header">
+
+      <h1 class="card-title"><i class="fa-solid fa-basket-shopping mr-2"></i> Logs de Compras</h1>
+
+    </div>
+
+    <div class="card-body p-0">
+
+      <table id="table" class="table table-striped m-0">
+        <tr class="tableHeader">
+          <th>#</th>
+          <th>Data/Hora</th>
+          <th>Total</th>
+          <th>Detalhes</th>
+        </tr>
+        
+        <% logs.rows.forEach((log) => { %>
+    
+          <tr class="tableRow">
+            <td><%= log.id %></td>
+            <td><%= log.createdAt.toLocaleDateString('pt-BR', { year: 'numeric' , month: 'numeric' , day: 'numeric' , hour: 'numeric' , minute: 'numeric' }).replace(' ', ' às '); %></td>
+            <td>R$<%= log.total %></td>
+            <td><a href="/view-log/<%= log.id %>" class="btn btn-warning"><i class="fa-solid fa-eye"></i></a></td>
+          </tr>
+    
+        <% }); %>
+    
+      </table>
+    </div>
+
+  </div>
+
+<%- include('./partials/footer'); %>
