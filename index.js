@@ -13,6 +13,13 @@ const logsController = require("./controllers/system/logs");
 
 const configurationController = require("./controllers/dashboard/configuration");
 
+const MercadoPago = require('mercadopago');
+
+MercadoPago.configure({
+  sandbox: true,
+  access_token: 'TEST-3946894957343841-062300-bd7dd6784bb795afabe051cdebfa845b-263382960'
+});
+
 const app = Express();
 
 app.use(session({

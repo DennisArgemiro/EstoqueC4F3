@@ -18,8 +18,6 @@ moneyRecived.addEventListener('input', (e) => {
     trocoValue.textContent = troco.replace('.', ',');
 });
 
-
-
 payment.addEventListener('change', (e) => {
 
     if (e.target.value == '0') {

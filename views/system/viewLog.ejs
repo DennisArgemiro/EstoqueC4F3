@@ -15,7 +15,15 @@
 
       <div>
         <span><b>Método de pagamento:</b> <%= log.payment %></span>
-        <span style="text-align: right; float: right;"><b>Complemento do pagamento:</b> <%= log.complement %></span>
+        <span style="text-align: right; float: right;"><b>Complemento do pagamento:</b> 
+        
+          <% if (log.payment !== 'Pix') { %>
+
+            <%= log.complement %>
+
+          <% } %>
+        
+        </span>
       </div>
 
       <div>

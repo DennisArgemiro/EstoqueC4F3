@@ -1,135 +1,97 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://kit.fontawesome.com/2716485b7f.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="./css/storage.css" />
-    <title>EstoqueC4F3 - Novo Produto</title>
-    <!-- <script type="module" src="../scripts/database.js"></script> -->
-  </head>
-  <body>
-    <header>
-      <section class="container">
-        <div class="logo">
-          <img
-            src="./images/estoquec4.png"
-            alt=""
-            class="logo-img"
-            width="200px"
-          />
+<%- include('./partials/header'); %>
+
+
+<div class="card mt-2">
+  <div class="card-header">
+    <h1 class="card-title"><i class="fa-solid fa-plus mr-2"></i>Novo Produto</h1>
+  </div>
+  <div class="card-body">
+    <form method="POST" action="/novo-produto" class="form">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Nome</span>
         </div>
-        <div class="button">
-          <button class="btnHeader">Vendas</button>
-          <button class="btnHeader">Estoque</button>
-          <button class="btnHeader">Caixa</button>
-        </div>
-      </section>
-    </header>
-    <main>
-      <div class="container">
-        <div class="card mt-5">
-          <div class="card-header">
-            <h1 class="card-title">
-              <i class="fa-solid fa-plus mr-2"></i>Novo Produto
-            </h1>
-          </div>
-
-          <div class="card-body">
-
-            <form method="POST" action="/novo-produto" class="form">
-
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Nome</span>
-                </div>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Username"
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
-                  name="name"
-                />
-              </div>
-
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Tipo</span>
-                </div>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Username"
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
-                  name="type"
-                />
-              </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Preço</span>
-                </div>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Username"
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
-                  name="price"
-                />
-              </div>
-
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Validade</span>
-                </div>
-                <input
-                  type="date"
-                  class="form-control"
-                  placeholder="Username"
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
-                  name="validity"
-                />
-              </div>
-
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Lote</span>
-              </div>
-              <input type="text" name="lote" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Quantidade</span>
-              </div>
-              <input type="number" name="qtd" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
-
-          </form>
-          </div>
-          
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Nome"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          name="name"
+        />
       </div>
-    </main>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Tipo</span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Tipo"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          name="type"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Preço</span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Preço"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          name="price"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Validade</span>
+        </div>
+        <input
+          type="date"
+          class="form-control"
+          placeholder="Validade"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          name="validity"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Lote</span>
+        </div>
+        <input
+          type="text"
+          name="lote"
+          class="form-control"
+          placeholder="Lote"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Quantidade</span>
+        </div>
+        <input
+          type="number"
+          name="qtd"
+          class="form-control"
+          placeholder="Quantidade"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary float-right" >Cadastrar</button>
+    </form>
+  </div>
+</div>
+  <%- include('./partials/footer'); %>

@@ -24,7 +24,7 @@ router.post('/register', (req, res) => {
 
         Users.create({ username, name, email, password: hash }).then(() => {
 
-          res.render("./authentication/register", { msg: true, msgType: 'success', msgContent: 'Usuário cadastrado com sucesso!' });
+          res.render("./authentication/login");
 
         }).catch((error) => {
           console.log(error);
