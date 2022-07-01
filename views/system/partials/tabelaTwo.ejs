@@ -1,0 +1,48 @@
+<table id="table" class="table table-striped">
+  <tr class="tableHeader">
+    <th>Nome</th>
+    <th>Tipo</th>
+    <th>Preco</th>
+    <th>Quantidade</th>
+    <th>Ações</th>
+  </tr>
+
+  <% products.forEach((product) => { %>
+
+  <tr class="tableRow">
+    <td><%= product.name %></td>
+    <td><%= product.type %></td>
+    <td>R$<%= product.price %></td>
+    <td><%= product.qtd %></td>
+    <td>
+      <form method="post" action="/cart/<%=product.id %>">
+        <div
+          class="input-group mb-3"
+          style="display: flex; flex-direction: row"
+        >
+          <input
+            type="number"
+            class="form-control"
+            aria-label="Recipient's username"
+            aria-describedby="basic-addon2"
+            name="qtd"
+          />
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+            <style>
+              input::-webkit-outer-spin-button,
+              input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+              }
+            </style>
+          </div>
+        </div>
+      </form>
+    </td>
+  </tr>
+
+  <% }); %>
+</table>
