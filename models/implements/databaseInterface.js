@@ -31,7 +31,7 @@ module.exports = {
     return response;
   },
   set: async (database, object) => {
-    let response = await database.create(object);
+    let response = await database.create(object, {logging: false});
 
     return response;
   },

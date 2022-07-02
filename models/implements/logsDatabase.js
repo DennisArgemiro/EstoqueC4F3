@@ -17,36 +17,22 @@ module.exports = {
 
     return response;
   },
-  getLog: async (database, query = {}, order) => {
-    const { value, filter = "ASC" } = order;
-    const { type } = query;
+  getLog: async (database, order) => {
+    const { value= "id", filter = "ASC" } = order;
 
-    let response = await database.findAll({
-      order: [[value, filter]],
-      where: {
-        [Op.and]: [
-          { ...query },
-          {
-            [Op.or]: [
-              { id: "" },
-            ],
-          },
-        ],
-      }
-    });
+    let response = await database.findAll({order: [[value, filter]]});
     return response
   },
   set: async (database, object) => {
-    let response = await database.create(object);
+    let response = await database.create(object,{logging: false});
 
     console.log(response);
 
     return response;
   },
-  update: async (database, object) => {
-    const { id, values } = object;
+  update: async (database, object, filter ={}) => {
 
-    let response = await database.update(values, { where: { id: id } });
+    let response = await database.update(object, { where: {filter} });
 
     return response;
   },
