@@ -16,7 +16,6 @@
     "express-session": "^1.17.3",
     "mercadopago": "^1.5.13",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.20.1",
-    "logging":false
+    "sequelize": "^6.20.1"
   }
 }

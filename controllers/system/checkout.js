@@ -139,13 +139,13 @@ router.post("/checkout", isAuthenticated, async (req, res) => {
           { id: productData.id }
         );
       });
-      // await logsDatabase.set(Logs, {
-      //   cpf,
-      //   payment,
-      //   complement: complement[0],
-      //   products,
-      //   total: totalInput,
-      // });
+      await logsDatabase.set(Logs, {
+        cpf,
+        payment,
+        complement: complement[0],
+        products,
+        total: totalInput,
+      });
       const cartLog = await logsDatabase.deleteAll(Cart);
       console.log("checkout finalizado");
       res.redirect(`/view-log/${cartLog.id}`);

@@ -13,7 +13,6 @@ router.get("/", isAUthenticated, (req, res) => {
     System.findOne({ where: { id: 1 } }).then((configuration) => {
 
         Produtos.findAll().then((products) => {
-
             res.render("./system/home", { products, session, configuration });
     
         }).catch((error) => {
