@@ -1,353 +1,39 @@
 const Express = require("express");
 const isAuthenticated = require("../../middlewares/isAuthenticated");
 const Products = require("../../models/Products");
-
+const dbInterface = require("../../models/implements/databaseInterface");
 const router = Express.Router();
 
-
-router.get("/filter/:type/:text", isAuthenticated, (req, res) => {
+router.get("/filter/:type/:text", isAuthenticated, async (req, res) => {
   const { type, text } = req.params;
+  const search = Number(text) == 0 ? "" : text;
+  const entrie = new Map([[type,search]])
+  const query = Object.fromEntries(entrie)
+  console.log(query);
 
-  if (Number(text) === 0) {
-    switch (type) {
-      case "name":
-        Products.findAll({ order: [["name", "ASC"]] })
-          .then((products) => {
-            res.render("./system/partials/tabela", { products });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
+  try {
+    const products = await dbInterface.get(Products, query, {value: type, filter:"ASC"});
+    return res.render("./system/partials/tabela", { products });
 
-      case "type":
-        Products.findAll({ order: [["type", "ASC"]] })
-          .then((products) => {
-            res.render("./system/partials/tabela", { products });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "price":
-        Products.findAll({ order: [["price", "ASC"]] })
-          .then((products) => {
-            res.render("./system/partials/tabela", { products });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "validity":
-        Products.findAll({ order: [["expirationIn", "ASC"]] })
-          .then((products) => {
-            res.render("./system/partials/tabela", { products });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "lote":
-        Products.findAll({ order: [["lote", "ASC"]] })
-          .then((products) => {
-            res.render("./system/partials/tabela", { products });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "qtd":
-        Products.findAll({ order: [["qtd", "ASC"]] })
-          .then((products) => {
-            res.render("./system/partials/tabela", { products });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      default:
-        Products.findAll({ order: [["name", "ASC"]] })
-          .then((products) => {
-            res.render("./system/partials/tabela", { products });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-    }
-  } else {
-    switch (type) {
-      case "name":
-        Products.findAll({ where: { name: text }, order: [["name", "ASC"]] })
-          .then((products) => {
-            res.render("./system/partials/tabela", { products });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "type":
-        Products.findAll({ where: { type: text }, order: [["type", "ASC"]] })
-          .then((products) => {
-            res.render("./system/partials/tabela", { products });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "price":
-        Products.findAll({ where: { price: text }, order: [["price", "ASC"]] })
-          .then((products) => {
-            res.render("./system/partials/tabela", { products });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "validity":
-        Products.findAll({
-          where: { expirationIn: text },
-          order: [["expirationIn", "ASC"]],
-        })
-          .then((products) => {
-            res.render("./system/partials/tabela", { products });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "lote":
-        Products.findAll({ where: { lote: text }, order: [["lote", "ASC"]] })
-          .then((products) => {
-            res.render("./system/partials/tabela", { products });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "qtd":
-        Products.findAll({ where: { qtd: text }, order: [["qtd", "ASC"]] })
-          .then((products) => {
-            res.render("./system/partials/tabela", { products });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      default:
-        Products.findAll({ order: [["name", "ASC"]] })
-          .then((products) => {
-            res.render("./system/partials/tabela", { products });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-    }
+  } catch (error) {
+    console.log(error);
   }
 });
 
-router.get("/filterTwo/:type/:text", isAuthenticated, (req, res) => {
+router.get("/filterTwo/:type/:text", isAuthenticated, async(req, res) => {
   const { type, text } = req.params;
+  const search = Number(text) == 0 ? "" : text;
+  const entrie = new Map([[type,search]])
+  const query = Object.fromEntries(entrie)
+  console.log(query,"a")
+try {
+  
+  const productsTwo = await dbInterface.get(Products, query, {value:type, filter: "ASC"})
+  res.render("./system/partials/tabelaCarrinho", { productsTwo });
 
-  if (Number(text) === 0) {
-    switch (type) {
-      case "name":
-        Products.findAll({ order: [["name", "ASC"]], limit: 5 })
-          .then((productsTwo) => {
-            res.render("./system/partials/tabelaCarrinho", { productsTwo });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "type":
-        Products.findAll({ order: [["type", "ASC"]], limit: 5 })
-          .then((productsTwo) => {
-            res.render("./system/partials/tabelaCarrinho", { productsTwo });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "price":
-        Products.findAll({ order: [["price", "ASC"]], limit: 5 })
-          .then((productsTwo) => {
-            res.render("./system/partials/tabelaCarrinho", { productsTwo });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "validity":
-        Products.findAll({ order: [["expirationIn", "ASC"]], limit: 5 })
-          .then((productsTwo) => {
-            res.render("./system/partials/tabelaCarrinho", { productsTwo });
-             
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "lote":
-        Products.findAll({ order: [["lote", "ASC"]], limit: 5 })
-          .then((productsTwo) => {
-            res.render("./system/partials/tabelaCarrinho", { productsTwo });
-             
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "qtd":
-        Products.findAll({ order: [["qtd", "ASC"]], limit: 5 })
-          .then((productsTwo) => {
-            res.render("./system/partials/tabelaCarrinho", { productsTwo });
-             
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      default:
-        Products.findAll({ order: [["name", "ASC"]], limit: 5 })
-          .then((productsTwo) => {
-            res.render("./system/partials/tabelaCarrinho", { productsTwo });
-             
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-    }
-  } else {
-    switch (type) {
-      case "name":
-        Products.findAll({ where: { name: text }, order: [["name", "ASC"]], limit: 5 })
-          .then((productsTwo) => {
-            res.render("./system/partials/tabelaCarrinho", { productsTwo });
-             
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "type":
-        Products.findAll({ where: { type: text }, order: [["type", "ASC"]], limit: 5 })
-          .then((productsTwo) => {
-            res.render("./system/partials/tabelaCarrinho", { productsTwo });
-             
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "price":
-        Products.findAll({ where: { price: text }, order: [["price", "ASC"]], limit: 5 })
-          .then((productsTwo) => {
-            res.render("./system/partials/tabelaCarrinho", { productsTwo });
-             
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "validity":
-        Products.findAll({
-          where: { expirationIn: text },
-          order: [["expirationIn", "ASC"]], limit: 5,
-        })
-          .then((productsTwo) => {
-            res.render("./system/partials/tabelaCarrinho", { productsTwo });
-             
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "lote":
-        Products.findAll({ where: { lote: text }, order: [["lote", "ASC"]], limit: 5 })
-          .then((productsTwo) => {
-            res.render("./system/partials/tabelaCarrinho", { productsTwo });
-             
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      case "qtd":
-        Products.findAll({ where: { qtd: text }, order: [["qtd", "ASC"]], limit: 5 })
-          .then((productsTwo) => {
-            res.render("./system/partials/tabelaCarrinho", { productsTwo });
-             
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-
-      default:
-        Products.findAll({ order: [["name", "ASC"]], limit: 5 })
-          .then((productsTwo) => {
-            res.render("./system/partials/tabelaCarrinho", { productsTwo });
-             
-          })
-          .catch((error) => {
-            console.log(error);
-            res.redirect("/");
-          });
-        break;
-    }
-  }
+} catch (error) {
+  console.log(error)  
+}
 });
 
 module.exports = router;

@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+  db:
+    image: mysql
+    ports:
+      - 3306:3306 
+    volumes:
+      - app:/var/lib/mysql
+      
+    environment:
+      MYSQL_ROOT_PASSWORD: senha123
+      MySQL_DATABASE: estoque
+  
+volumes:
+  app: 

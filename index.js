@@ -10,7 +10,6 @@ const registerController = require("./controllers/authentication/register");
 const filterController = require("./controllers/system/filter");
 const checkoutController = require("./controllers/system/checkout");
 const logsController = require("./controllers/system/logs");
-
 const configurationController = require("./controllers/dashboard/configuration");
 
 const MercadoPago = require('mercadopago');

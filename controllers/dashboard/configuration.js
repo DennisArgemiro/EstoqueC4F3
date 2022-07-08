@@ -12,6 +12,7 @@ router.get("/dashboard/configuration", isAuthenticated, (req, res) => {
     const session = req.session.user;
 
     System.findOne({ where: { id: 1 } }).then((configuration) => {
+   
 
         Users.findOne({ where: { id: session.id } }).then((userData) => {
 
@@ -26,7 +27,7 @@ router.get("/dashboard/configuration", isAuthenticated, (req, res) => {
                     res.redirect('/');
     
                 }
-    
+    euvoumamar
             } else {
     
                 res.redirect('/');
