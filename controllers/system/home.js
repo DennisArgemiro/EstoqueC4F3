@@ -1,29 +1,21 @@
 const Express = require('express');
 const Produtos = require('../../models/Products');
 const System = require('../../models/System');
+const dbInterface = require("../../models/implements/databaseInterface")
 
 const isAUthenticated = require('../../middlewares/isAuthenticated');
 
 const router = Express.Router();
 
 // get(rota, callback)
-router.get("/", isAUthenticated, (req, res) => {
+router.get("/", isAUthenticated, async(req, res) => {
     const session = req.session.user;
+    const query = undefined
 
-    System.findOne({ where: { id: 1 } }).then((configuration) => {
+    const configuration = await dbInterface.findOne(System,{id: 1})
+    const products = await dbInterface.get(Produtos, query, {value: "id", filter: "ASC"})
 
-        Produtos.findAll().then((products) => {
-            res.render("./system/home", { products, session, configuration });
-    
-        }).catch((error) => {
-            console.log(error);
-            res.redirect('/');
-        });
-
-    }).catch((error) => {
-        console.log(error);
-        res.redirect('/');
-    });
+    res.render("./system/home", { products, session, configuration });
 
 });
 

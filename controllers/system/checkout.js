@@ -63,13 +63,12 @@ router.get("/cart", isAuthenticated, async (req, res) => {
   const session = req.session.user;
 
   const configuration = await findOne(System, { id: 1 });
-  const query = undefined
-  
+  const query = undefined;
 
   const products = await get(Products, query, { value: "id", filter: "ASC" });
-  const cartItems = await findAndCount(Cart,{
+  const cartItems = await findAndCount(Cart, {
     value: "id",
-    filter: "ASC", 
+    filter: "ASC",
   });
 
   res.render("./system/cart", {
@@ -122,26 +121,22 @@ router.post("/checkout", isAuthenticated, async (req, res) => {
           productId: cartItem.product,
           qtd: cartItem.qtd,
         });
-        const productData = await findOne(Products, {
-          id: Number(cartItem.product),
-        });
-        console.log("O id dessa merda é : ", productData);
-
+        const productData = await findOne(Products, {id: Number(cartItem.product)});
         await update(
           Products,
           { qtd: Number(productData.qtd) - cartItem.qtd },
-          { id: productData.id }
+          { id: Number(productData.id) }
         );
       });
-      await logsDatabase.set(Logs, {
+      const cartLog = await logsDatabase.set(Logs, {
         cpf,
         payment,
         complement: complement[0],
         products,
         total: totalInput,
       });
-      const cartLog = await logsDatabase.deleteAll(Cart);
-      console.log("checkout finalizado");
+      await logsDatabase.deleteAll(Cart);
+      console.log("Este é o cartlog: ",cartLog);
       res.redirect(`/view-log/${cartLog.id}`);
     } else {
       res.redirect("/cart");

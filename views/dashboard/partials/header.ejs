@@ -71,8 +71,25 @@
             </a>
           </li>
 
-          <% if (session.isAdministrator) { %>
+          <li class="nav-item">
+            <a href="/logs" class="nav-link">
+              <i class="nav-icon fa-solid fa-basket-shopping "></i>
+              <p>
+                Logs de Compras
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/novo-produto" class="nav-link">
+              <i class="nav-icon fa-solid fa-box""></i>
+              <p>
+                Registrar Produtos
+              </p>
+            </a>
+          </li>
 
+          <% if (session.isAdministrator) { %>
+            
             <li class="nav-item">
               <a href="/dashboard/configuration" class="nav-link">
                 <i class="nav-icon fa-solid fa-gear"></i>
@@ -81,20 +98,26 @@
                 </p>
               </a>
             </li>
-
-          <% } %>
-          
+            
+            <% } %>
         </ul>
       </nav>
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" style="position: absolute; bottom: 0; margin-bottom: 10px;"> 
+        <li class="nav-item" >
+        <a href="/logout" class="nav-link">
+          <i class="nav-icon fa-solid fa-arrow-right-from-bracket"></i>
+          <p>
+            Logout
+          </p>
+        </a>
+      </li></ul>
       <!-- /.sidebar-menu -->
-    </div>
     <!-- /.sidebar -->
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     
+    
     <div class="container">
 
-
-      

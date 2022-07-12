@@ -7,62 +7,33 @@ const isAuthenticated = require("../../middlewares/isAuthenticated");
 const Logs = require('../../models/Logs');
 const Products = require('../../models/Products');
 
-router.get('/logs', isAuthenticated, (req, res) => {
+const dbInterface = require('../../models/implements/databaseInterface')
+const logInterface = require('../../models/implements/logsDatabase')
+
+router.get('/logs', isAuthenticated, async (req, res) => {
   const session = req.session.user;
+  const configuration = await dbInterface.findOne(System, {id: 1})
+  const logs  = await logInterface.findAndCount(Logs, {value: "id", filter: "DESC"})
 
-  System.findOne({ where: { id: 1 } }).then((configuration) => {
-
-      Logs.findAndCountAll({ order: [['id', 'DESC']] }).then((logs) => {
-
-        res.render('./system/logs', { session, configuration, logs });
-
-      }).catch((error) => {
-      console.log(error);
-      res.redirect('/');
-    });
-
-  }).catch((error) => {
-    console.log(error);
-    res.redirect('/');
-  });
-
+  res.render('./system/logs', { session, configuration, logs });
 });
 
-router.get('/view-log/:id', isAuthenticated, (req, res) => {
+router.get('/view-log/:id', isAuthenticated, async(req, res) => {
   const session = req.session.user;
   const id = Number(req.params.id);
+  console.log(id)
+  const query = undefined
 
-  System.findOne({ where: { id: 1 } }).then((configuration) => {
+  const configuration = await dbInterface.findOne(System, {id:1})
+  const products = await dbInterface.get(Products, query, {value: "id"})
+  const log = await logInterface.findOneLog(Logs, {id})
 
-    Products.findAll().then((products) => {
+  if(log != undefined){
+    res.render('./system/viewLog', { session, configuration, log, products });
 
-      Logs.findOne({ where: { id } }).then((log) => {
-
-        if (log != undefined) {
-
-          res.render('./system/viewLog', { session, configuration, log, products });
-
-        } else {
-          res.redirect('/');
-        }
-  
-      }).catch((error) => {
-      console.log(error);
-      res.redirect('/');
-    });
-
-    }).catch((error) => {
-      console.log(error);
-      res.redirect('/');
-    });
-
-}).catch((error) => {
-  console.log(error);
-  res.redirect('/');
-});
-
-
-
+  }else{
+    res.redirect('/');
+  }
 });
 
 module.exports = router;
