@@ -1,12 +1,18 @@
 <table class="table table-striped">
+  <style>
+    th, td,tr {
+      border-spacing: 0;
+      margin: 0;
+    }
+  </style>
   <tr class="tableHeader">
-    <th>Nome</th>
+    <th>Name</th>
     <th>Preco</th>
     <th>Quantidade</th>
     <th>Ações</th>
   </tr>
 
-  <% productsTwo.forEach((product) => { %>
+  <% productsTwo.rows.forEach((product) => { %>
 
   <tr>
     <td><%= product.name %></td>
@@ -29,6 +35,13 @@
             <button class="btn btn-outline-secondary" type="submit">
               <i class="fa-solid fa-cart-plus"></i>
             </button>
+            <style>
+              input::-webkit-outer-spin-button,
+              input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+              }
+            </style>
           </div>
         </div>
       </form>

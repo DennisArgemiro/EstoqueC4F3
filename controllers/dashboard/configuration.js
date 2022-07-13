@@ -16,7 +16,7 @@ router.get("/dashboard/configuration", isAuthenticated, async (req, res) => {
   const userData = await dbInterface.findOne(Users, { id: session.id });
 
   userData != undefined && userData.isAdministrator
-    ? res.render("./dashboard/configuration", {
+    ? res.render("./dashboard/configuration",{
         session,
         configuration,
       })
@@ -70,33 +70,6 @@ router.post(
     } else {
       res.send("Deu ruim!");
     }
-
-    //   Users.findOne({ where: { id: session.id } })
-    //     .then((userData) => {
-    //       if (userData != undefined) {
-    //         if (userData.isAdministrator) {
-    //           System.update(
-    //             { name, owner, cnpj, logo, adress, cel, celTwo },
-    //             { where: { id: 1 } }
-    //           )
-    //             .then(() => {
-    //               res.redirect("/");
-    //             })
-    //             .catch((error) => {
-    //               console.log(error);
-    //               res.redirect("/");
-    //             });
-    //         } else {
-    //           res.redirect("/");
-    //         }
-    //       } else {
-    //         res.redirect("/");
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //       res.redirect("/");
-    //     });
   }
 );
 

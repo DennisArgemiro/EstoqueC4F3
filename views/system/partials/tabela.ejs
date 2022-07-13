@@ -1,24 +1,78 @@
 <table id="table" class="table table-striped">
-    <tr class="tableHeader">
-      <th>Nome</th>
-      <th>Tipo</th>
-      <th>Preco</th>
-      <th>Validade</th>
-      <th>Lote</th>
-      <th>Quantidade</th>
-    </tr>
-    
-    <% products.forEach((product) => { %>
+  <tr class="tableHeader">
+    <th>Nome</th>
+    <th>Tipo</th>
+    <th>Preco</th>
+    <th>Validade</th>
+    <th>Lote</th>
+    <th>Quantidade</th>
+    <th>Ações</th>
+  </tr>
 
-      <tr class="tableRow">
-        <td><%= product.name %></td>
-        <td><%= product.type %></td>
-        <td>R$<%= product.price %></td>
-        <td><%= product.expirationIn %></td>
-        <td><%= product.lote %></td>
-        <td><%= product.qtd %></td>
-      </tr>
+  <% products.forEach((product) => { %>
 
-    <% }); %>
+  <tr class="tableRow">
+    <td><%= product.name %></td>
+    <td><%= product.type %></td>
+    <td>R$<%= product.price %></td>
+    <td><%= product.expirationIn %></td>
+    <td><%= product.lote %></td>
+    <td><%= product.qtd %></td>
+    <td>
+      <button
+        type="button"
+        class="btn btn-danger"
+        style="background-color: blue; border: blue"
+        ;
+        data-toggle="modal"
+        data-target=".bd-example-modal-lg"
+      >
+        <i class="fa-solid fa-pen"> </i>
+      </button>
+    </td>
+  </tr>
+  <% }); %>
 
-  </table>
+  <div
+    class="modal fade bd-example-modal-lg"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myLargeModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="mt-10 ml-10 modal-header">
+          <h4 class="modal-title">
+            <i class="fa-solid fa-pen mr-2"></i>Editar
+          </h4>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            
+            <div class=" mb-10">
+              <label for="select">Campo</label>
+              <select name="select" id="" class="form-control">
+                <option value="name">Nome</option>
+                <option value="type">Tipo</option>
+                <option value="price">Preço</option>
+                <option value="expirationIn">Validade</option>
+                <option value="lote">Lote</option>
+                <option value="qtd">Quantidade</option>
+              </select>
+  
+            </div>
+  
+            <div class="mt-10">
+              <label for="value">Valor</label>
+            <input type="text" name="value" placeholder="Informe o Valor Aqui" class="form-control">
+            <button type="submit" class="btn btn-success col-12 mt-3">
+              <i class="fa-solid fa-floppy-disk mr-2"></i> Salvar
+            </button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</table>

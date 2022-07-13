@@ -11,6 +11,7 @@ const filterController = require("./controllers/system/filter");
 const checkoutController = require("./controllers/system/checkout");
 const logsController = require("./controllers/system/logs");
 const configurationController = require("./controllers/dashboard/configuration");
+const Products = require("./models/Products")
 
 const MercadoPago = require('mercadopago');
 
@@ -65,3 +66,5 @@ connection.authenticate().then(() => {
   console.log(error);
 
 });
+// Products.sync({ force: true });
+

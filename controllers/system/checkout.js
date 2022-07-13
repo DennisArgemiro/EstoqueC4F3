@@ -19,7 +19,7 @@ const MercadoPago = require("mercadopago");
 
 const isAuthenticated = require("../../middlewares/isAuthenticated");
 
-const id = "" + Date.now();
+const id = "" + Date.now(); 
 const emailDoPagador = "cleito@arrasta.com";
 
 router.get("/checkout-pix/:total", isAuthenticated, (req, res) => {
@@ -66,7 +66,7 @@ router.get("/cart", isAuthenticated, async (req, res) => {
   const query = undefined;
 
   const products = await get(Products, query, { value: "id", filter: "ASC" });
-  const cartItems = await findAndCount(Cart, {
+  const cartItems = await logsDatabase.findAndCount(Cart,{
     value: "id",
     filter: "ASC",
   });
@@ -88,11 +88,13 @@ router.post("/cart/:id", isAuthenticated, async (req, res) => {
     if (existInCart != undefined) {
       await update(
         Cart,
-        { qtd: Number(existInCart.qtd) + qtd },
+        { qtd: Number(existInCart.qtd) + Number(qtd) },
         { id: existInCart.id }
       );
-    } else {
+    } else if(qtd > 0){
       await set(Cart, { product: productData.id, qtd });
+    } else{
+      await set(Cart, { product: productData.id, qtd: 1 });
     }
     res.redirect("/cart");
   }

@@ -14,7 +14,7 @@ const Products = connection.define('products', {
         defaultValue: ''
     },
     price: {
-        type: Sequelize.STRING,
+        type: Sequelize.FLOAT,
         allowNull: false,
         defaultValue: '0'
     },

@@ -6,10 +6,19 @@ const router = Express.Router();
 
 /////////// funcoes da api///////////////////////
 module.exports = {
-  findAndCount: async (database, order) => {
+  findAndCount: async (database, query = {}, order, count = {}) => {
     const { value = "id", filter = "ASC" } = order;
+    const { offset = 0, limit } = count;
+    const {name, ...data} = query
 
-    let response = database.findAndCountAll({ order: [[value, filter]] });
+    let response = database.findAndCountAll({
+      where: {
+        [Op.or]: [{...data}, { name: { [Op.startsWith]: name || "" } }],
+      },
+      order: [[value, filter]],
+      offset,
+      limit,
+    });
     return response;
   },
   findOne: async (database, object) => {
@@ -19,19 +28,19 @@ module.exports = {
   },
   get: async (database, query = {}, order, exclude = []) => {
     const { value, filter = "ASC" } = order;
-    const { type, text } = query;
+    const { name, ...data } = query;
 
     let response = await database.findAll({
       attributes: { exclude },
       order: [[value, filter]],
       where: {
-        [Op.or]: [{ ...query }, { name: { [Op.startsWith]: text || "" } }],
+        [Op.or]: [{ ...data }, { name: { [Op.startsWith]: name || "" } }],
       },
     });
     return response;
   },
   set: async (database, object) => {
-    let response = await database.create(object, {logging: false});
+    let response = await database.create(object, { logging: false });
 
     return response;
   },
