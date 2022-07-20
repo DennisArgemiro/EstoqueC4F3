@@ -10,6 +10,7 @@ const registerController = require("./controllers/authentication/register");
 const filterController = require("./controllers/system/filter");
 const checkoutController = require("./controllers/system/checkout");
 const logsController = require("./controllers/system/logs");
+const editController = require("./controllers/system/editRow");
 const configurationController = require("./controllers/dashboard/configuration");
 const Products = require("./models/Products")
 
@@ -43,6 +44,7 @@ app.use("/", filterController);
 app.use("/", checkoutController);
 app.use("/", configurationController);
 app.use("/", logsController);
+app.use("/", editController);
 
 connection.authenticate().then(() => {
   

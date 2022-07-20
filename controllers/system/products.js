@@ -17,7 +17,6 @@ router.get("/novo-produto", isAuthenticated, async (req, res) => {
 router.post("/novo-produto", async (req, res) => {
 
   const { name, type, price, validity, lote, qtd } = req.body;
-  console.log("Validade: ",validity);
   const productData = await dbInterfdace.findOne(System, { name });
   if (productData == undefined) {
     await dbInterfdace.set(Products, {

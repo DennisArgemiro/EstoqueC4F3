@@ -94,7 +94,7 @@ router.post("/cart/:id", isAuthenticated, async (req, res) => {
     } else if(qtd > 0){
       await set(Cart, { product: productData.id, qtd });
     } else{
-      await set(Cart, { product: productData.id, qtd: 1 });
+      await set(Cart, { product: productData.id, qtd: qtd+1 });
     }
     res.redirect("/cart");
   }
@@ -145,5 +145,6 @@ router.post("/checkout", isAuthenticated, async (req, res) => {
     }
   }
 });
+
 
 module.exports = router;

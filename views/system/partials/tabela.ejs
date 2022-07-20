@@ -8,7 +8,7 @@
     <th>Quantidade</th>
     <th>Ações</th>
   </tr>
-
+  <% var list = [] %> 
   <% products.forEach((product) => { %>
 
   <tr class="tableRow">
@@ -21,58 +21,63 @@
     <td>
       <button
         type="button"
+        id="buttomId"
         class="btn btn-danger"
         style="background-color: blue; border: blue"
         ;
         data-toggle="modal"
         data-target=".bd-example-modal-lg"
+        value="<%= product.id %>"
+        onclick=""
       >
         <i class="fa-solid fa-pen"> </i>
       </button>
+      
     </td>
   </tr>
   <% }); %>
-
-  <div
-    class="modal fade bd-example-modal-lg"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="myLargeModalLabel"
-    aria-hidden="true"
+</table>
+<div
+class="modal fade bd-example-modal-lg"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
   >
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="mt-10 ml-10 modal-header">
-          <h4 class="modal-title">
-            <i class="fa-solid fa-pen mr-2"></i>Editar
-          </h4>
-        </div>
-        <div class="modal-body">
-          <form action="">
-            
-            <div class=" mb-10">
-              <label for="select">Campo</label>
-              <select name="select" id="" class="form-control">
-                <option value="name">Nome</option>
-                <option value="type">Tipo</option>
-                <option value="price">Preço</option>
-                <option value="expirationIn">Validade</option>
-                <option value="lote">Lote</option>
-                <option value="qtd">Quantidade</option>
-              </select>
-  
-            </div>
-  
-            <div class="mt-10">
-              <label for="value">Valor</label>
-            <input type="text" name="value" placeholder="Informe o Valor Aqui" class="form-control">
-            <button type="submit" class="btn btn-success col-12 mt-3">
-              <i class="fa-solid fa-floppy-disk mr-2"></i> Salvar
-            </button>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="mt-10 ml-10 modal-header">
+        <h4 class="modal-title"><i class="fa-solid fa-pen mr-2"></i>Editar </h4>
+      </div>
+      <div class="modal-body">
+        <form class="form" method="POST" action="" id="formEdit">
+          <div class="mb-10">
+            <label for="select">Campo</label>
+            <select name="select" id="" class="form-control">
+              <option value="name">Nome</option>
+              <option value="type">Tipo</option>
+              <option value="price">Preço</option>
+              <option value="expirationIn">Validade</option>
+              <option value="lote">Lote</option>
+              <option value="qtd">Quantidade</option>
+            </select>
           </div>
+
+          <div class="mt-10">
+            <label for="value">Valor</label>
+            <input
+            type="text"
+            name="value"
+            placeholder="Informe o Valor Aqui"
+            class="form-control"
+            />
+          </div>
+          <button type="submit" class="btn btn-success col-12 mt-3">
+            <i class="fa-solid fa-floppy-disk mr-2"></i> Salvar
+          </button>
         </form>
-        </div>
       </div>
     </div>
   </div>
-</table>
+</div>
+
