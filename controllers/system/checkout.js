@@ -85,16 +85,18 @@ router.post("/cart/:id", isAuthenticated, async (req, res) => {
 
   if (productData != undefined && productData.qtd >= qtd) {
     const existInCart = await findOne(Cart, { product: productData.id });
-    if (existInCart != undefined) {
+    if (existInCart != undefined && qtd > 0) {
       await update(
         Cart,
         { qtd: Number(existInCart.qtd) + Number(qtd) },
         { id: existInCart.id }
-      );
-    } else if(qtd > 0){
-      await set(Cart, { product: productData.id, qtd });
+        );
+      } else if(existInCart != undefined && qtd == 0){
+      console.log(existInCart.qtd)
+      console.log(qtd)
+      await update(Cart, {qtd:Number(existInCart.qtd) + 1},{ id: existInCart.id});
     } else{
-      await set(Cart, { product: productData.id, qtd: qtd+1 });
+      await set(Cart, { product: productData.id, qtd: 1 });
     }
     res.redirect("/cart");
   }
