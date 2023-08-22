@@ -15,49 +15,7 @@ const {
   update,
 } = require("../../models/implements/databaseInterface");
 
-const MercadoPago = require("mercadopago");
-
 const isAuthenticated = require("../../middlewares/isAuthenticated");
-
-const id = "" + Date.now(); 
-const emailDoPagador = "cleito@arrasta.com";
-
-router.get("/checkout-pix/:total", isAuthenticated, (req, res) => {
-  const total = req.params.total;
-
-  System.findOne({ where: { id: 1 } })
-    .then(async (configuration) => {
-      const dados = {
-        items: [
-          (item = {
-            id: id,
-            description: `Compra na ${configuration.name}`,
-            quantity: 1,
-            currency_id: "BRL",
-            unit_price: parseFloat(total),
-          }),
-        ],
-        prayer: {
-          email: emailDoPagador,
-        },
-        external_reference: id,
-      };
-
-      try {
-        const pagamento = await MercadoPago.preferences.create(dados);
-
-        // res.json({ pagamento });
-
-        res.redirect(pagamento.body.init_point);
-      } catch (error) {
-        res.send(error);
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      res.redirect("/");
-    });
-});
 
 router.get("/cart", isAuthenticated, async (req, res) => {
   const session = req.session.user;

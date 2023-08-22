@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize');
 
-const connection = new Sequelize(`estoque`, 'root', 'senha123', {
+const connection = new Sequelize( {
 
-    host: 'localhost',
-    dialect: 'mysql',
-    timezone: '-00:03'
+    dialect: 'sqlite',
+    storage: './database.sqlite'
 
 });
+
 
 module.exports = connection;
 

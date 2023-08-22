@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon server.js",
+    "build": "electron-packager ./ EstoqueC4f3 --plataform=win32 --arch=x64 --icon=./public/images/icon.png"
   },
   "keywords": [],
   "author": "",
@@ -14,9 +15,13 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
-    "mercadopago": "^1.5.13",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.20",
-    "sequelize": "^6.20.1"
+    "sequelize": "^6.20.1",
+    "sqlite3": "^5.1.4"
+  },
+  "devDependencies": {
+    "electron": "^23.0.0",
+    "electron-packager": "^17.1.1"
   }
 }
